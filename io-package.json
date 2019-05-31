@@ -1,6 +1,6 @@
 {
     "common": {
-        "name": "fritzboxWidget",
+        "name": "vis-fritzbox",
         "version": "0.0.1",
         "news": {
             "0.0.1": {
@@ -39,8 +39,8 @@
         "main": "main.js",
         "icon": "fritzboxWidget.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/nobodyMO/ioBroker.fritzboxWidget/master/admin/fritzboxWidget.png",
-        "readme": "https://github.com/nobodyMO/ioBroker.fritzboxWidget/blob/master/README.md",
+        "extIcon": "https://raw.githubusercontent.com/nobodyMO/ioBroker.vis-fritzbox/master/admin/fritzboxWidget.png",
+        "readme": "https://github.com/nobodyMO/ioBroker.vis-fritzbox/blob/master/README.md",
         "loglevel": "info",
         "restartAdapters": [
             "vis"
