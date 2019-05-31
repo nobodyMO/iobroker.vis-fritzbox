@@ -3,10 +3,10 @@
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
-[![Dependency Status](https://img.shields.io/david/Author/iobroker.template.svg)](https://david-dm.org/Author/iobroker.template)
-[![Known Vulnerabilities](https://snyk.io/test/github/Author/ioBroker.template/badge.svg)](https://snyk.io/test/github/Author/ioBroker.template)
+[![Dependency Status](https://img.shields.io/david/nobodyMO/iobroker.fritzboxWidget.svg)](https://david-dm.org/Author/iobroker.template)
+[![Known Vulnerabilities](https://snyk.io/test/github/nobodyMO/ioBroker.fritzboxWidget/badge.svg)](https://snyk.io/test/github/nobodyMO/ioBroker.fritzboxWidget)
 
-[![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
+[![NPM](https://nodei.co/npm/iobroker.fritzboxWidget.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
 
 **Tests:**: [![Travis-CI](http://img.shields.io/travis/Author/ioBroker.template/master.svg)](https://travis-ci.org/Author/ioBroker.template)
 
