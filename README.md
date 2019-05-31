@@ -1,14 +1,14 @@
 ![Logo](admin/fritzboxWidget.png)
 # fritzbox Widget for ioBroker
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
+[![NPM version](http://img.shields.io/npm/v/iobroker.fritzboxWidget.svg)](https://www.npmjs.com/package/iobroker.fritzboxWidget)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.fritzboxWidget.svg)](https://www.npmjs.com/package/iobroker.fritzboxWidget)
 [![Dependency Status](https://img.shields.io/david/nobodyMO/iobroker.fritzboxWidget.svg)](https://david-dm.org/Author/iobroker.template)
 [![Known Vulnerabilities](https://snyk.io/test/github/nobodyMO/ioBroker.fritzboxWidget/badge.svg)](https://snyk.io/test/github/nobodyMO/ioBroker.fritzboxWidget)
 
-[![NPM](https://nodei.co/npm/iobroker.fritzboxWidget.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
+[![NPM](https://nodei.co/npm/iobroker.fritzboxWidget.png?downloads=true)](https://nodei.co/npm/iobroker.fritzboxWidget/)
 
-**Tests:**: [![Travis-CI](http://img.shields.io/travis/Author/ioBroker.template/master.svg)](https://travis-ci.org/Author/ioBroker.template)
+**Tests:**: [![Travis-CI](http://img.shields.io/travis/nobodyMO/ioBroker.fritzboxWidget/master.svg)](https://travis-ci.org/Author/ioBroker.template)
 
 ## fritzbox Widget for ioBroker
 
