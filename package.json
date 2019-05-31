@@ -25,7 +25,7 @@
     "axios": "^0.18.0",
     "gulp": "^4.0.2"
   },
-  "main": "widgets/fritzbox.html",
+  "main": "widgets/fritzboxWidget.html",
   "scripts": {
     "test:package": "mocha test/package --exit",
     "test": "npm run test:package"
