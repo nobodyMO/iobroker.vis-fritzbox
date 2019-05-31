@@ -1,5 +1,5 @@
 ![Logo](admin/fritzboxWidget.png)
-# ioBroker.template
+# fritzbox Widget for ioBroker
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
