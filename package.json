@@ -1,0 +1,37 @@
+{
+  "name": "iobroker.fritzboxWidget",
+  "version": "0.0.1",
+  "description": "The package contains a VIS widget to visualize the states of a fritzbox router",
+  "author": {
+    "name": "Markus Korporal",
+    "email": "markus@korporal.de"
+  },
+  "homepage": "https://github.com/nobodyMO/ioBroker.fritzboxWidget",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "Fritzbox",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nobodyMO/ioBroker.fritzboxWidget"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@iobroker/testing": "^1.2.0",
+    "@types/gulp": "^4.0.6",
+    "axios": "^0.18.0",
+    "gulp": "^4.0.2"
+  },
+  "main": "widgets/fritzbox.html",
+  "scripts": {
+    "test:package": "mocha test/package --exit",
+    "test": "npm run test:package"
+  },
+  "bugs": {
+    "url": "https://github.com/nobodyMO/ioBroker.fritzboxWidget/issues"
+  },
+  "readmeFilename": "README.md"
+}

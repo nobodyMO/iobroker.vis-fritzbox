@@ -1,0 +1,64 @@
+{
+    "common": {
+        "name": "fritzboxWidget",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Fritzbox VIS Widget",
+        "titleLang": {
+            "en": "Fritzbox VIS Widget",
+            "de": "Fritzbox VIS Widget"
+        },
+        "desc": {
+            "en": "Widget for visualization of a Fritzbox router with status lights",
+            "de": "Widget zur Visualisierung einer Fritzbox mit steuerbaren Statusanzeigen"
+        },
+        "authors": [
+            "Author <markus@korporal.de>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "Fritzbox",
+            "Smart Home",
+            "home automation"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "fritzboxWidget.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/nobodyMO/ioBroker.fritzboxWidget/master/admin/fritzboxWidget.png",
+        "readme": "https://github.com/nobodyMO/ioBroker.fritzboxWidget/blob/master/README.md",
+        "loglevel": "info",
+        "restartAdapters": [
+            "vis"
+        ],
+        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "onlyWWW": true,
+        "noConfig": true,
+        "singleton": true,
+        "type": "visualization-widgets",
+        "mode": "once",
+        "dependencies": [
+            "vis"
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
