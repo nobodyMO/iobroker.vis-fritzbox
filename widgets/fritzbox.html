@@ -6,10 +6,10 @@
     Copyright 2019 nobodyMO markus@korporal.de
 -->
 <!-- here you can include so many css as you want -->
-<link rel="stylesheet" href="widgets/fritzbox/css/style.css" />
+<link rel="stylesheet" href="widgets/fritzboxWidget/css/style.css" />
 <!-- here you can include so many js-files as you want -->
-<script type="text/javascript" src="widgets/fritzbox/js/fritzbox.js"></script>
-
+<script type="text/javascript" src="widgets/fritzboxWidget/js/fritzboxWidget.js"></script>
+ 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
 
@@ -97,39 +97,25 @@
         <%== %> - place unescaped result to HTML document
 
     You can do "if" conditions and "for" cycles.
-
+	
 -->
 <script id="tplfritzboxState"
         type="text/ejs"
         class="vis-tpl"
-        data-vis-prev='<div id="prev_tplMysetShowInstance" style="position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev " style="width: 280px; height: 159px;" > <div class="myset-class vis-widget-prev-body " style="padding:2px"> OID: hm-rpc.0.EEQ0006629.1.STATE<br> OID value: true<br> Color: <span style="color: rgb(128, 0, 0);">#800000</span><br> htmlText: <textarea readonly="" style="width:100%">asda</textarea></div>'
-        data-vis-attrs="oid/id;myColor/color;htmlText/text;"
-        data-vis-attrs0="group.extraTemplate;extraAttr"
+        data-vis-prev='<img src="widgets/fritzboxWidget/img/fritzboxprev.png">'
+        data-vis-attrs="powerstate/id;connectionstate/id;phonestate/id;wlanstate/id;"
         data-vis-set="fritzbox"
-        data-vis-type="helper"
-        data-vis-name="Show instance">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="width:230px; height:210px;" id="<%= this.data.attr('wid') %>" >
-        <div class="template-class vis-widget-body <%== this.data.attr('class') %>" style="padding:2px" >
-            OID: <%= this.data.attr('oid') %><br>
-            OID value: <%== vis.states[this.data.attr('oid') + '.val'] %><br>
-            Color: <span style="color: <%= this.data.attr('myColor') %>"><%= this.data.attr('myColor') %></span><br>
-            extraAttr: <%== this.data.attr('extraAttr') %><br>
-            Browser instance: <%= vis.instance %><br>
-            htmlText: <textarea readonly style="width: calc(100% - 10px)"><%== this.data.attr('htmlText') %></textarea><br>
-        </div>
-    </div>
-</script>
+        data-vis-type="helper" 
+        data-vis-name="Fritzbox">
 
-<script id="tplTemplateHelper"
-        type="text/ejs"
-        class="vis-tpl"
-        data-vis-prev='<div id="prev_tplTemplateHelper" style="position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev " style="width: 280px; height: 159px;" > <div class="myset-class vis-widget-prev-body " style="padding:2px"> OID: hm-rpc.0.EEQ0006629.1.STATE<br> OID value: true<br> Color: <span style="color: rgb(128, 0, 0);">#800000</span><br> htmlText: <textarea readonly="" style="width:100%">asda</textarea></div>'
-        data-vis-attrs="oid/id;myColor/color;htmlText/text;"
-        data-vis-attrs0="group.extraTemplate;extraAttr"
-        data-vis-set="fritzbox"
-        data-vis-type="helper"
-        data-vis-name="Helper">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 230px; height: 210px" id="<%= this.data.attr('wid') %>"><%
-        vis.binds.template.createWidget(this.data.wid, this.view, this.data, this.style);
-    %></div>
+		<div class="vis-widget <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:696px;height:274px;border:1px;left:<%== this.data.attr('left') %>;top:<%== this.data.attr('top') %>;">
+		  <div class="fritzbox" style="position: relative;top: 0;left: 0;width:696px;height:274px;content:url(widgets/fritzboxWidget/img/fritzbox2.png);z-index: 9"></div> 
+		  <div class="fritzboxpower" style="position: relative;top: -136px;left:145px;width:39px;height:77px;content:url(widgets/fritzboxWidget/img/poweroff.png);z-index: 10"></div>
+		  <div class="fritzboxinternet" style="position: relative;top:-213px;left:210px;width:35px;height:80px;content:url(widgets/fritzboxWidget/img/internetoff.png);z-index: 10"></div>
+		  <div class="fritzboxphone" style="position: relative;top: -292px;left:278px;width:29px;height:83px;content:url(widgets/fritzboxWidget/img/phoneoff.png);z-index: 10"></div>
+		  <div class="fritzboxwlan" style="position: relative;top: -375px;left:340px;width:32px;height:83px;content:url(widgets/fritzboxWidget/img/wlanoff.png);z-index: 10"></div>  
+          <%
+            vis.binds.fritzbox.createWidget(this.data.wid, this.view, this.data, this.style);
+          %>		  
+		</div>	
 </script>
