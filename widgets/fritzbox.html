@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="widgets/fritzboxWidget/css/style.css" />
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/fritzboxWidget/js/fritzboxWidget.js"></script>
- 
+
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
 
@@ -114,8 +114,85 @@
 		  <div class="fritzboxinternet" style="position: relative;top:-213px;left:210px;width:35px;height:80px;content:url(widgets/fritzboxWidget/img/internetoff.png);z-index: 10"></div>
 		  <div class="fritzboxphone" style="position: relative;top: -292px;left:278px;width:29px;height:83px;content:url(widgets/fritzboxWidget/img/phoneoff.png);z-index: 10"></div>
 		  <div class="fritzboxwlan" style="position: relative;top: -375px;left:340px;width:32px;height:83px;content:url(widgets/fritzboxWidget/img/wlanoff.png);z-index: 10"></div>  
-          <%
-            vis.binds.fritzbox.createWidget(this.data.wid, this.view, this.data, this.style);
+          <%		  
+			vis.binds["fritzbox"+this.data.attr('wid')] = {
+				powerstate: 0,
+				connectionstate: 0,
+				phonestate: 0,
+				wlanstate: 0,
+				flashstate:true,
+				createWidget: function (widgetID, view, data, style) {
+					var fbobj=this;
+					
+					var $div = $('#' + widgetID);
+					// if nothing found => wait
+					if (!$div.length) {
+						return setTimeout(function () {
+							fbobj.createWidget(widgetID, view, data, style);
+						}, 100);
+					}
+
+					if (data.powerstate) {
+						fbobj.powerstate=vis.states.attr(data.powerstate + '.val');
+						console.log ("powerstate :" + fbobj.powerstate);
+						$div.find('div.fritzboxpower').css("content","url(widgets/fritzboxWidget/img/power"+(fbobj.powerstate?"on":"off") +".png)");
+						vis.states.bind(data.powerstate + '.val', function (e, newVal, oldVal) {
+							fbobj.powerstate=newVal;
+							console.log ("powerstate :" + fbobj.powerstate);
+							$div.find('div.fritzboxpower').css("content","url(widgets/fritzboxWidget/img/power"+(fbobj.powerstate?"on":"off") +".png)");
+						});
+					}				
+					if (data.connectionstate) {
+						fbobj.connectionstate=vis.states.attr(data.connectionstate + '.val');
+						console.log ("connectionstate :" + fbobj.connectionstate);
+						$div.find('div.fritzboxinternet').css("content","url(widgets/fritzboxWidget/img/internet"+(fbobj.connectionstate?"on":"off") +".png)");
+						vis.states.bind(data.connectionstate + '.val', function (e, newVal, oldVal) {
+							fbobj.connectionstate=newVal;
+							console.log ("connectionstate :" + fbobj.connectionstate);
+							$div.find('div.fritzboxinternet').css("content","url(widgets/fritzboxWidget/img/internet"+(fbobj.connectionstate?"on":"off") +".png)");
+						});
+					}				
+					if (data.phonestate) {
+						fbobj.phonestate=vis.states.attr(data.phonestate + '.val');
+						console.log ("phonestate :" + fbobj.phonestate);
+						$div.find('div.fritzboxphone').css("content","url(widgets/fritzboxWidget/img/phone"+(fbobj.phonestate?"on":"off") +".png)");
+						vis.states.bind(data.phonestate + '.val', function (e, newVal, oldVal) {
+							fbobj.phonestate=newVal;
+							console.log ("phonestate :" + fbobj.phonestate);
+							$div.find('div.fritzboxphone').css("content","url(widgets/fritzboxWidget/img/phone"+(fbobj.phonestate?"on":"off") +".png)");
+						});
+					}				
+					if (data.wlanstate) {
+						fbobj.wlanstate=vis.states.attr(data.wlanstate + '.val');
+						console.log ("wlanstate :" + fbobj.wlanstate);
+						$div.find('div.fritzboxwlan').css("content","url(widgets/fritzboxWidget/img/wlan"+(fbobj.wlanstate?"on":"off") +".png)");			
+						vis.states.bind(data.wlanstate + '.val', function (e, newVal, oldVal) {
+							fbobj.wlanstate=newVal;
+							console.log ("wlanstate :" + fbobj.wlanstate);
+							$div.find('div.fritzboxwlan').css("content","url(widgets/fritzboxWidget/img/wlan"+(fbobj.wlanstate?"on":"off") +".png)");				
+						});
+					}
+					setInterval(function(){ 
+						fbobj.flashstate=!fbobj.flashstate;
+						if (fbobj.powerstate==2) {
+							$div.find('div.fritzboxpower').css("content","url(widgets/fritzboxWidget/img/power"+(fbobj.flashstate?"on":"off") +".png)");
+						}; 				
+						if (fbobj.connectionstate==2) {
+							$div.find('div.fritzboxinternet').css("content","url(widgets/fritzboxWidget/img/internet"+(fbobj.flashstate?"on":"off") +".png)");
+						};
+						if (fbobj.phonestate==2) {
+							$div.find('div.fritzboxphone').css("content","url(widgets/fritzboxWidget/img/phone"+(fbobj.flashstate?"on":"off") +".png)");
+						};
+						if (fbobj.wlanstate==2) {
+							$div.find('div.fritzboxwlan').css("content","url(widgets/fritzboxWidget/img/wlan"+(fbobj.flashstate?"on":"off") +".png)");
+						};
+					}, 1000);
+					
+				}
+			};
+		  
+            vis.binds["fritzbox"+this.data.attr('wid')].createWidget(this.data.wid, this.view, this.data, this.style);
           %>		  
 		</div>	
 </script>
+  
