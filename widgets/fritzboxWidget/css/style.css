@@ -1,4 +1,54 @@
-/* Style your widget here */
-.template-class {
-    font-style: italic;
+
+.fritzboxpoweron,.fritzboxpoweron:after {
+	content:url(../img/poweron.png);
+}
+
+.fritzboxinternet {
+	position: relative;
+	top:-213px;
+	left:210px;
+	width:35px;
+	height:80px;
+	z-index: 10
+}
+
+.fritzboxinternetoff,.fritzboxinternetoff:after {
+	content:url(../img/internetoff.png);
+}
+.fritzboxinterneton,.fritzboxinterneton:after {
+	content:url(../img/interneton.png);
+}
+
+.fritzboxphone {
+	position: relative;
+	top: -292px;
+	left:278px;
+	width:29px;
+	height:83px;
+	z-index: 10
+}
+
+.fritzboxphoneoff,.fritzboxphoneoff:after {
+	content:url(../img/phoneoff.png);
+}
+
+.fritzboxphoneon,.fritzboxphoneon:after {
+	content:url(../img/phoneon.png);
+}
+
+.fritzboxwlan {
+	position: relative;
+	top: -375px;
+	left:340px;
+	width:32px;
+	height:83px;
+	z-index: 10  
+}
+
+.fritzboxwlanoff,.fritzboxwlanoff:after {
+	content:url(../img/wlanoff.png);
+}
+
+.fritzboxwlanon,.fritzboxwlanon:after {
+	content:url(../img/wlanon.png);
 }
