@@ -2,7 +2,7 @@
     ioBroker.vis fritzbox Widget-Set
 
     version: "0.0.1"
-
+ 
     Copyright 2019 nobodyMO markus@korporal.de
 -->
 <!-- here you can include so many css as you want -->
@@ -10,112 +10,37 @@
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/fritzboxWidget/js/fritzboxWidget.js"></script>
 
-<!-- the full description of format in data-vis-attrs can be found here:
-    https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
-
-    ----------------------------------------------------------
-    Mandatory XML attributes:
-        id="tplTemplateWIDGETNAME"
-        type="text/ejs"
-        class="vis-tpl"
-
-        "type" and "class" are always the same. "id" is unique and must start with "tplSETNAME" and ends with widget name. Use camel-case for it.
-
-    ----------------------------------------------------------
-    data-vis-attrs - divided with semicolon the list of attributes, like attr1/id;attr2/color
-        Full format of one attribute is: attr_name(start-end)[default_value]/type,idFilter/onChangeFunc
-            attr_name - the name of the attribute, e.g. "myID"
-            start-end - creates automatically attributes from attr_namestart to attr_nameend, like "myID(1-3)" creates myID1, myID2, myID3
-            default_value - by creation of widget this attribute will be filled with this value, e.g. "myID[#001122]/color"
-            type - some predefined types have edit helpers, else it will be shown as text field
-
-                Type format:
-                      id - Object ID Dialog
-                      checkbox
-                      image - image
-                      number,min,max,step - non-float number. min,max,step are optional
-                      color - color picker
-                      views - Name of the view
-                      effect - jquery UI show/hide effects
-                      eff_opt - additional option to effect slide (up, down, left, right)
-                      fontName - Font name
-                      slider,min,max,step - Default step is ((max - min) / 100)
-                      select,value1,value2,... - dropdown select
-                      nselect,value1,value2,... - same as select, but without translation of items
-                      style,fileFilter,nameFilter,attrFilter
-                      custom,functionName,options,... - custom editor - functionName is starting from vis.binds.[widgetset.funct]. E.g. custom/timeAndWeather.editWeather,short
-                      group.name - define new or old group. All following attributes belongs to new group till new group.xyz
-                      group.name/byindex - like group, but all following attributes will be grouped by ID. Like group.windows/byindex;slide(1-4)/id;slide_type(1-4)/select,open,closed  Following groups will be created Windows1(slide1,slide_type1), Windows2(slide2,slide_type2), Windows3(slide3,slide_type3), Windows4(slide4,slide_type4)
-                      text - dialog box with html editor
-                      html - dialog box with html editor
-
-                If type is "id", you can define filer for "Select ID Dialog", like "myID/id,level.temperature".
-                Additionally you can define callback(onChangeFunc), which will be called if this attribute was changed by user for different purposes: validate entry, fill other attributes, ...
-
-        You can define additional data-vis-attrs line: data-vis-attrs0, data-vis-attrs1. Anyway data-vis-attrs must be there. You may not skip numbers.
-        E.g. in "data-vis-attrs="A;" data-vis-attrs1="B" attribute B will be not parsed.
-
-    --------------------------------------------------------
-    data-vis-type
-        Help information for user. Used for search.
-        You can define more than one type divided by comma.
-        There are following common types, but you can use your own specific types:
-            ctrl   - widget that can write some Object IDs
-            val    - widget that shows some information from Object IDs
-            static - widget do not read information from Object IDs or URL
-            button - button widget
-            dimmer - dimmer widget
-            weather - weather widget
-            ...
-
-    --------------------------------------------------------
-    data-vis-set
-        Name of the widget set. Must be equal to the name of this HTML file
-
-    --------------------------------------------------------
-    data-vis-prev
-        Html code used as preview of this widget. If widget is complex you can just use image as preview:
-        data-vis-prev='<img src="widgets/hqwidgets/img/prev/Prev_tplTemplateShowInstance.png"></img>'
-        Of course the image must exist.
-
-    --------------------------------------------------------
-    data-vis-name
-        Readable name of widget shown in vis editor.
-
-    --------------------------------------------------------
-    data-vis-beta="true"
-        Shows "BETA" symbol in vis editor by preview
-
-    --------------------------------------------------------
-    data-vis-update-style="true"
-        Call redraw of widget if some of the CSS styles in editor for this widget was changed
-
-    You can read about Magic tags here: http://canjs.com/guides/EJS.html
-    Following magic tags are exist:
-        <% %> - execute javascript
-        <%= %> - place escaped result to HTML document
-        <%== %> - place unescaped result to HTML document
-
-    You can do "if" conditions and "for" cycles.
-	
--->
-<script id="tplfritzboxState"
+<script id="tplFritzboxState"
         type="text/ejs"
         class="vis-tpl"
         data-vis-prev='<img src="widgets/fritzboxWidget/img/fritzboxprev.png">'
-        data-vis-attrs="powerstate/id;connectionstate/id;phonestate/id;wlanstate/id;"
+        data-vis-attrs="powerstateoid/id;connectionstateoid/id;phonestateoid/id;wlanstateoid/id"
+		
         data-vis-set="fritzbox"
-        data-vis-type="helper" 
-        data-vis-name="Fritzbox">
+        data-vis-type="val" 
+        data-vis-name="Fritzbox"
+		data-vis-update-style="true"
+		>
 
-		<div class="vis-widget <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" style="width:696px;height:274px;border:1px;left:<%== this.data.attr('left') %>;top:<%== this.data.attr('top') %>;">
-		  <div class="fritzbox" style="position: relative;top: 0;left: 0;width:696px;height:274px;content:url(widgets/fritzboxWidget/img/fritzbox2.png);z-index: 9"></div> 
-		  <div class="fritzboxpower" style="position: relative;top: -136px;left:145px;width:39px;height:77px;content:url(widgets/fritzboxWidget/img/poweroff.png);z-index: 10"></div>
-		  <div class="fritzboxinternet" style="position: relative;top:-213px;left:210px;width:35px;height:80px;content:url(widgets/fritzboxWidget/img/internetoff.png);z-index: 10"></div>
-		  <div class="fritzboxphone" style="position: relative;top: -292px;left:278px;width:29px;height:83px;content:url(widgets/fritzboxWidget/img/phoneoff.png);z-index: 10"></div>
-		  <div class="fritzboxwlan" style="position: relative;top: -375px;left:340px;width:32px;height:83px;content:url(widgets/fritzboxWidget/img/wlanoff.png);z-index: 10"></div>  
+		<div class="vis-widget <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>"
+		data-oid-powerstateoid="<%=  this.data.attr('powerstateoid') %>"
+        data-oid-connectionstateoid="<%= this.data.attr('connectionstateoid') %>"
+        data-oid-phonestateoid="<%= this.data.attr('phonestateoid') %>"
+        data-oid-wlanstateoid="<%= this.data.attr('wlanstateoid') %>"
+		>
+			<div class="fritzwrapper" >
+			  <div class="fritzbox"></div> 
+			  <div class="fritzboxpower fritzboxpoweroff" ></div>
+			  <div class="fritzboxinternet fritzboxinternetoff"></div>
+			  <div class="fritzboxphone fritzboxphoneoff" ></div>
+			  <div class="fritzboxwlan fritzboxwlanoff" ></div>  
+			</div>
           <%		  
-			vis.binds["fritzbox"+this.data.attr('wid')] = {
+			var powerstate=vis.states.attr(this.data.powerstate + '.val');
+			console.log ("powerstate Obj:" + JSON.stringify (vis.states.attr(this.data.powerstateoid + '.val')));
+			console.log ("powerstate (" + this.data.powerstateoid + "):" + powerstate);
+		  
+			vis.binds.fritzbox = {
 				powerstate: 0,
 				connectionstate: 0,
 				phonestate: 0,
@@ -131,68 +56,109 @@
 							fbobj.createWidget(widgetID, view, data, style);
 						}, 100);
 					}
-
-					if (data.powerstate) {
-						fbobj.powerstate=vis.states.attr(data.powerstate + '.val');
-						console.log ("powerstate :" + fbobj.powerstate);
-						$div.find('div.fritzboxpower').css("content","url(widgets/fritzboxWidget/img/power"+(fbobj.powerstate?"on":"off") +".png)");
-						vis.states.bind(data.powerstate + '.val', function (e, newVal, oldVal) {
+					var scale=Math.min(($div.width()) / 750,($div.height()) / 386 );
+					console.log ("resize #" + widgetID + " to scale " + scale );
+					$div.find('div.fritzwrapper').css("transform","scale(" + scale +")");
+		    
+					if (data.powerstateoid) {
+						vis.states.bind(data.powerstateoid + '.val', 
+							function (e, newVal, oldVal) {
 							fbobj.powerstate=newVal;
 							console.log ("powerstate :" + fbobj.powerstate);
-							$div.find('div.fritzboxpower').css("content","url(widgets/fritzboxWidget/img/power"+(fbobj.powerstate?"on":"off") +".png)");
-						});
+							var obj=$div.find('div.fritzboxpower');
+							obj.removeClass('fritzboxpower'+(!fbobj.powerstate?"on":"off"));
+							obj.addClass('fritzboxpower'+(fbobj.powerstate?"on":"off"));			
+						});					
+						fbobj.powerstate=vis.states.attr(data.powerstateoid + '.val');
+						console.log ("powerstate Obj" + JSON.stringify (vis.states.attr(data.powerstateoid + '.val')));
+						console.log ("powerstate (" + data.powerstateoid + "):" + fbobj.powerstate);
+						var obj=$div.find('div.fritzboxpower');
+						obj.removeClass('fritzboxpower'+(!fbobj.powerstate?"on":"off"));
+						obj.addClass('fritzboxpower'+(fbobj.powerstate?"on":"off"));			
 					}				
 					if (data.connectionstate) {
-						fbobj.connectionstate=vis.states.attr(data.connectionstate + '.val');
-						console.log ("connectionstate :" + fbobj.connectionstate);
-						$div.find('div.fritzboxinternet').css("content","url(widgets/fritzboxWidget/img/internet"+(fbobj.connectionstate?"on":"off") +".png)");
-						vis.states.bind(data.connectionstate + '.val', function (e, newVal, oldVal) {
+						fbobj.connectionstate=vis.states.attr(data.connectionstateoid + '.val');
+						console.log ("connectionstate (" + data.connectionstateoid + "):" + fbobj.connectionstate);
+						var obj=$div.find('div.fritzboxinternet');
+						obj.removeClass('fritzboxinternet'+(!fbobj.connectionstate?"on":"off"));
+						obj.addClass('fritzboxinternet'+(fbobj.connectionstate?"on":"off"));
+						vis.states.bind(data.connectionstateoid + '.val', function (e, newVal, oldVal) {
 							fbobj.connectionstate=newVal;
 							console.log ("connectionstate :" + fbobj.connectionstate);
-							$div.find('div.fritzboxinternet').css("content","url(widgets/fritzboxWidget/img/internet"+(fbobj.connectionstate?"on":"off") +".png)");
+							var obj=$div.find('div.fritzboxinternet');
+							obj.removeClass('fritzboxinternet'+(!fbobj.connectionstate?"on":"off"));
+							obj.addClass('fritzboxinternet'+(fbobj.connectionstate?"on":"off"));
 						});
 					}				
-					if (data.phonestate) {
-						fbobj.phonestate=vis.states.attr(data.phonestate + '.val');
-						console.log ("phonestate :" + fbobj.phonestate);
-						$div.find('div.fritzboxphone').css("content","url(widgets/fritzboxWidget/img/phone"+(fbobj.phonestate?"on":"off") +".png)");
-						vis.states.bind(data.phonestate + '.val', function (e, newVal, oldVal) {
+					if (data.phonestateoid) {
+						fbobj.phonestate=vis.states.attr(data.phonestateoid + '.val');
+						console.log ("phonestate (" + data.phonestateoid + "):" + fbobj.phonestate);
+						var obj=$div.find('div.fritzboxphone');
+						obj.removeClass('fritzboxphone'+(!fbobj.phonestate?"on":"off"));
+						obj.addClass('fritzboxphone'+(fbobj.phonestate?"on":"off"));
+						vis.states.bind(data.phonestateoid + '.val', function (e, newVal, oldVal) {
 							fbobj.phonestate=newVal;
-							console.log ("phonestate :" + fbobj.phonestate);
-							$div.find('div.fritzboxphone').css("content","url(widgets/fritzboxWidget/img/phone"+(fbobj.phonestate?"on":"off") +".png)");
+							console.log ("phonestate (" + data.phonestateoid + "):" + fbobj.phonestate);
+							var obj=$div.find('div.fritzboxphone');
+							obj.removeClass('fritzboxphone'+(!fbobj.phonestate?"on":"off"));
+							obj.addClass('fritzboxphone'+(fbobj.phonestate?"on":"off"));
 						});
 					}				
-					if (data.wlanstate) {
-						fbobj.wlanstate=vis.states.attr(data.wlanstate + '.val');
-						console.log ("wlanstate :" + fbobj.wlanstate);
-						$div.find('div.fritzboxwlan').css("content","url(widgets/fritzboxWidget/img/wlan"+(fbobj.wlanstate?"on":"off") +".png)");			
-						vis.states.bind(data.wlanstate + '.val', function (e, newVal, oldVal) {
+					if (data.wlanstateoid) {
+						fbobj.wlanstate=vis.states.attr(data.wlanstateoid + '.val');
+						console.log ("wlanstate (" + data.wlanstateoid + "):" + fbobj.wlanstate);
+						var obj=$div.find('div.fritzboxwlan');
+						obj.removeClass('fritzboxwlan'+(!fbobj.wlanstate?"on":"off"));
+						obj.addClass('fritzboxwlan'+(fbobj.wlanstate?"on":"off"));
+
+						vis.states.bind(data.wlanstateoid + '.val', function (e, newVal, oldVal) {
 							fbobj.wlanstate=newVal;
 							console.log ("wlanstate :" + fbobj.wlanstate);
-							$div.find('div.fritzboxwlan').css("content","url(widgets/fritzboxWidget/img/wlan"+(fbobj.wlanstate?"on":"off") +".png)");				
+							obj.removeClass('fritzboxwlan'+(!fbobj.wlanstate?"on":"off"));
+							obj.addClass('fritzboxwlan'+(fbobj.wlanstate?"on":"off"));
+
 						});
 					}
 					setInterval(function(){ 
 						fbobj.flashstate=!fbobj.flashstate;
+						
 						if (fbobj.powerstate==2) {
-							$div.find('div.fritzboxpower').css("content","url(widgets/fritzboxWidget/img/power"+(fbobj.flashstate?"on":"off") +".png)");
+							var obj=$div.find('div.fritzboxpower');
+							obj.removeClass('fritzboxpower'+(!fbobj.flashstate?"on":"off"));
+							obj.addClass('fritzboxpower'+(fbobj.flashstate?"on":"off"));
 						}; 				
 						if (fbobj.connectionstate==2) {
-							$div.find('div.fritzboxinternet').css("content","url(widgets/fritzboxWidget/img/internet"+(fbobj.flashstate?"on":"off") +".png)");
+							var obj=$div.find('div.fritzboxinternet');
+							obj.removeClass('fritzboxinternet'+(!fbobj.flashstate?"on":"off"));
+							obj.addClass('fritzboxinternet'+(fbobj.flashstate?"on":"off"));
 						};
 						if (fbobj.phonestate==2) {
-							$div.find('div.fritzboxphone').css("content","url(widgets/fritzboxWidget/img/phone"+(fbobj.flashstate?"on":"off") +".png)");
+							var obj=$div.find('div.fritzboxphone');
+							obj.removeClass('fritzboxphone'+(!fbobj.flashstate?"on":"off"));
+							obj.addClass('fritzboxphone'+(fbobj.flashstate?"on":"off"));
 						};
 						if (fbobj.wlanstate==2) {
-							$div.find('div.fritzboxwlan').css("content","url(widgets/fritzboxWidget/img/wlan"+(fbobj.flashstate?"on":"off") +".png)");
+							var obj=$div.find('div.fritzboxwlan');
+							obj.removeClass('fritzboxwlan'+(!fbobj.flashstate?"on":"off"));
+							obj.addClass('fritzboxwlan'+(fbobj.flashstate?"on":"off"));
 						};
 					}, 1000);
 					
 				}
 			};
-		  
-            vis.binds["fritzbox"+this.data.attr('wid')].createWidget(this.data.wid, this.view, this.data, this.style);
+			console.log ("initialize resizeable for #" + this.data.wid);		
+			$("#" + this.data.wid).resizable({
+				resize: doResize
+			});
+			
+			function doResize(event, ui) {
+			    var scale=Math.min(ui.size.width/750, ui.size.height/386 );
+			    console.log ("Auto-Resize "+ scale)
+				ui.element.find('div.fritzwrapper').css("transform","scale(" + scale +")");
+			};
+
+			
+            vis.binds.fritzbox.createWidget(this.data.wid, this.view, this.data, this.style);						
           %>		  
 		</div>	
 </script>
-  
